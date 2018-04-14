@@ -1,0 +1,9 @@
+%h1 Add New Post
+
+= simple_form_for @post do |f|
+  = f.input :title
+  = f.input :content
+
+  = f.submit
+
+= link_to 'Back to Index', root_path

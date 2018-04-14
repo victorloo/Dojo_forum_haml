@@ -7,12 +7,13 @@
     %th Title
     %th Last replied at
     %th Viewed count
-  %tbody
-    - @posts.each do |post|
+  - @posts.each do |post|
+    %tbody
       %td replies
-      %td= @post.title
+      %td= link_to "#{post.title}", post_path(post)
       %td last replied at
       %td viewed count
-
+%div
+  = link_to 'New Post', new_post_path
 %div
   %p 放分頁
