@@ -1,0 +1,18 @@
+.banner
+  %h1 Blizzard Fans Forum
+
+%table
+  %thead
+    %th Replies count
+    %th Title
+    %th Last replied at
+    %th Viewed count
+  %tbody
+    - @posts.each do |post|
+      %td replies
+      %td= @post.title
+      %td last replied at
+      %td viewed count
+
+%div
+  %p 放分頁
