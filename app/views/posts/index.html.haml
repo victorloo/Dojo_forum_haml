@@ -1,0 +1,19 @@
+.banner
+  %h1 Blizzard Fans Forum
+
+%table
+  %thead
+    %th Replies count
+    %th Title
+    %th Last replied at
+    %th Viewed count
+  - @posts.each do |post|
+    %tbody
+      %td replies
+      %td= link_to "#{post.title}", post_path(post)
+      %td last replied at
+      %td viewed count
+%div
+  = link_to 'New Post', new_post_path
+%div
+  %p 放分頁
