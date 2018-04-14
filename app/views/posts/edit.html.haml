@@ -1,9 +1,5 @@
 %h1 Oops! You want to change something?
 
-= simple_form_for @post do |f|
-  = f.input :title
-  = f.input :content
-
-  = f.submit
+= render 'shared/form', object: @post
 
 = link_to 'Back', post_path(@post)
