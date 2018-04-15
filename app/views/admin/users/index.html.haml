@@ -1,8 +1,17 @@
 %h1 User's index page
 
-%ul
-  - @users.each do |user|
-    %li
-      %p name
-      = user.email
-      = user.role
+%table
+  %thead
+    %tr
+      %th
+        Name
+      %th
+        E-mail
+      %th
+        Role
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= user.role
