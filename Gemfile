@@ -35,6 +35,7 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'simple_form', '~> 4.0'
 gem 'hamlit', '~> 2.8', '>= 2.8.8'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'ffaker', '~> 2.9'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
