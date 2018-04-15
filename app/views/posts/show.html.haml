@@ -1,9 +1,28 @@
-%h1= @post.title
-
-%p= @post.content
-
-= image_tag @post.image, width: '600px'
-
-= link_to 'Back to Index', root_path
-= link_to 'Edit', edit_post_path(@post)
-= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?"}
+= provide :my_title, "檢視貼文"
+.container
+  .row
+    .post-title
+      %h1
+        = @post.title
+        %span
+          = link_to 'Collect', "#", class: "btn btn-info"
+          = link_to 'Comment', "#", class: "btn btn-info"
+  .post-main
+    .post-author
+      - if @post.user.avatar?
+        = image_tag @post.image, width: "300px", class: "img-responsive"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
+      %p= @post.user.name
+      = link_to 'Add Friend', "#", class: "btn btn-primary"
+    .post-content
+      - if @post.image?
+        = image_tag @post.image, width: "300px"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/200x200")/  
+      %p= @post.content
+    .post-button
+      = link_to edit_post_path(@post) do
+        %i.fas.fa-pencil-alt.fa-2x
+      = link_to post_path(@post), method: :delete, data: { confirm: "Are you sure?"} do
+        %i.fas.fa-trash-alt.fa-2x
