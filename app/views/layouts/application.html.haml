@@ -30,6 +30,21 @@
           - else
             %li= link_to "Sign In", new_user_session_path
   
-  %p.notice= notice
-  %p.alert= alert
-  = yield
+  - if flash[:notice]
+    .container
+      .row
+        .alert.alert-success.alert-dismissible{:role => 'alert'}
+          %button.close{:type => 'button', :data => {:dismiss => 'alert'}, :aria => {:label => 'Close'}}
+            %span{:aria => {:hidden => 'true'}}
+              &times;
+          = notice
+  - if flash[:alert]
+    .container
+      .row
+        .alert.alert-danger.alert-dismissible{:role => 'alert'}
+          %button.close{:type => 'button', :data => {:dismiss => 'alert'}, :aria => {:label => 'Close'}}
+            %span{:aria => {:hidden => 'true'}}
+              &times;
+          = alert
+  .container
+    = yield
