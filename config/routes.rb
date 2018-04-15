@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   root 'posts#index'
 
+  resources :users, only: [:show, :edit, :update]
+
   namespace :admin do
     resources :users
     root 'users#index'
