@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'simple_form', '~> 4.0'
-gem 'haml', '~> 5.0', '>= 5.0.4'
+gem 'hamlit', '~> 2.8', '>= 2.8.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
