@@ -33,7 +33,12 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'simple_form', '~> 4.0'
-gem 'haml', '~> 5.0', '>= 5.0.4'
+gem 'hamlit', '~> 2.8', '>= 2.8.8'
+gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'ffaker', '~> 2.9'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

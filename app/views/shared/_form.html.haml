@@ -1,5 +1,7 @@
 = simple_form_for object do |f|
   = f.input :title
   = f.input :content
+  = image_tag object.image, width: "300px" if object.image?
+  = f.input :image
 
   = f.submit

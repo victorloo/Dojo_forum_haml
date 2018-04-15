@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!, except: [:index]
 
   def index
-    @posts = Post.order(id: :asc)
+    @posts = Post.order(id: :asc).page(params[:page]).per(5)
   end
 
   def show
@@ -40,7 +41,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :image)
   end
 
   def find_post
