@@ -1,2 +1,91 @@
+@import 'normalize';
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  font-family: 'Lato', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.banner {
+  background-color: #4F96FF;
+  padding: 1px 0;
+  text-align: center;
+  margin: 0 -12%;
+  h1 {
+    font-size: 7rem;
+    font-weight: 700;
+  }
+}
+textarea.form-control.text.required {
+  height: 35rem;
+}
+
+.formgroup {
+  img {
+    float: left;
+  }
+  .file.optional.post_image {
+    position: fixed;
+    left: 30rem;
+    top: 50rem;
+  }
+  .btn.btn-primary {
+    clear: both;
+    float: left;
+    margin-top: 3rem;
+  }
+}
+
+.post-main {
+  .post-author {
+    width: 20%;
+    position: fixed;
+    left: 0;
+    height: 50%;
+    background: #f5f7f9;
+    padding: 4rem 0 0 2rem;
+    border-right: 4px solid #d6dce0;
+    top: 16%;
+    p {
+      text-transform: capitalize;
+      font-size: 4rem;
+    }
+  }
+  .post-content {
+    margin-left: 20%;
+    padding: 3em 3em;
+    top: 16%;
+    position: fixed;
+    height: 50%;;
+    p {
+      font-size: 1.1em;
+      line-height: 1.75;
+      height: 50%;
+      border: 1px, solid #d6dce0;
+      width: 40rem;
+    }
+  }
+  .post-button {
+    position: fixed;
+    left: 80%;
+    top: 63%;
+  }
+}
+
+.post-title {
+  margin: -22px -3% 0 -67px;
+  background-color: #f5f7f9;
+  padding: 1rem 5rem;
+  span {
+    float: right;
+  }
+}
