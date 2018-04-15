@@ -6,13 +6,30 @@
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 %body
-  - if current_user
-    = current_user.email
-    = link_to 'Profile', user_path(current_user)
-    |
-    = link_to 'Sign Out', destroy_user_session_path, method: :delete
-  - else
-    = link_to 'Sign In', new_user_session_path
+  %nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{:type => 'button', :data => {:toggle => 'collapse', :target => '#bs-example-navbar-collapse-1'}, :aria => {:expanded => 'false'}}
+          %span.sr-only
+            Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to "Blizzard Fans Forum", root_path, :class => "navbar-brand"          
+
+      .collapse.navbar-collapse{:id => 'bs-example-navbar-collapse-1'}
+        %ul.pull-right.text-right.nav.navbar-nav
+          - if current_user
+            - if current_user.admin?
+              %li
+                = link_to 'Admin', admin_users_path
+            %li
+              %p.navbar-text= current_user.email
+            %li= link_to 'Profile', user_path(current_user)
+            %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+          - else
+            %li= link_to "Sign In", new_user_session_path
+  
   %p.notice= notice
   %p.alert= alert
   = yield
