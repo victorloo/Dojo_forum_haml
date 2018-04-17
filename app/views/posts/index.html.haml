@@ -4,7 +4,13 @@
   %h1 Blizzard Fans Forum
 
 .row
-  .col-md-12    
+  .col-md-12
+    %ul.nav.nav-tabs
+      %li.active{role: "presentation"}
+        = link_to 'All', root_path
+      - @categories.each do |category|
+        %li{role: "presentation"}
+          = link_to category.name, category_path(category)
     %table.table.table-bordered.table-hover
       %thead
         %tr
