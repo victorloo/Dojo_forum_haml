@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
     @posts = Post.order(id: :asc).page(params[:page]).per(5)
