@@ -7,6 +7,13 @@
         %span
           = link_to 'Collect', "#", class: "btn btn-info"
           = link_to 'Comment', "#", class: "btn btn-info"
+      - @categories.each do |ca|
+        %ul.list-inline
+          %li
+            [
+            = ca.category.name
+            ]
+        
   .post-main
     .post-author
       - if @post.user.avatar?

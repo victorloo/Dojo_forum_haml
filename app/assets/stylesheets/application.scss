@@ -54,7 +54,7 @@ textarea.form-control.text.required {
     background: #f5f7f9;
     padding: 4rem 0 0 2rem;
     border-right: 4px solid #d6dce0;
-    top: 16%;
+    top: 18%;
     p {
       text-transform: capitalize;
       font-size: 4rem;
@@ -63,7 +63,7 @@ textarea.form-control.text.required {
   .post-content {
     margin-left: 20%;
     padding: 3em 3em;
-    top: 16%;
+    top: 18%;
     position: fixed;
     height: 50%;;
     p {
@@ -87,5 +87,8 @@ textarea.form-control.text.required {
   padding: 1rem 5rem;
   span {
     float: right;
+  }
+  ul {
+    display: inline;
   }
 }

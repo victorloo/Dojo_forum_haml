@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @categories = @post.folders
   end
 
   def new
