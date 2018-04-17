@@ -92,3 +92,19 @@ textarea.form-control.text.required {
     display: inline;
   }
 }
+
+.switch {
+  padding-bottom: 3rem;
+  font-size: 3rem;
+  .active {
+    text-decoration: underline #D5FFCC;
+    color: #FF3817;
+  }
+  .nonactive {
+    text-decoration: none;
+    color: #E8DDBA;
+  }
+  .first {
+    margin-right: 3rem;
+  }
+}

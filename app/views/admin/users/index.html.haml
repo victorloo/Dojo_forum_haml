@@ -2,6 +2,10 @@
 
 .row
   .col-md-12
+    .switch
+      = link_to 'Category List', admin_categories_path, class: "first nonactive"
+      = link_to 'User List', admin_users_path, class: "active"
+
     %table.table.table-bordered.table-hover
       %thead
         %tr
