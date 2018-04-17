@@ -29,7 +29,7 @@ textarea.form-control.text.required {
   height: 35rem;
 }
 
-.formgroup {
+.form-group {
   img {
     float: left;
   }
@@ -54,7 +54,7 @@ textarea.form-control.text.required {
     background: #f5f7f9;
     padding: 4rem 0 0 2rem;
     border-right: 4px solid #d6dce0;
-    top: 16%;
+    top: 18%;
     p {
       text-transform: capitalize;
       font-size: 4rem;
@@ -63,7 +63,7 @@ textarea.form-control.text.required {
   .post-content {
     margin-left: 20%;
     padding: 3em 3em;
-    top: 16%;
+    top: 18%;
     position: fixed;
     height: 50%;;
     p {
@@ -87,5 +87,44 @@ textarea.form-control.text.required {
   padding: 1rem 5rem;
   span {
     float: right;
+  }
+  ul {
+    display: inline;
+  }
+}
+
+.switch {
+  padding-bottom: 3rem;
+  font-size: 3rem;
+  .active {
+    text-decoration: underline #D5FFCC;
+    color: #FF3817;
+  }
+  .nonactive {
+    text-decoration: none;
+    color: #E8DDBA;
+  }
+  .first {
+    margin-right: 3rem;
+  }
+}
+
+.text {
+  padding-bottom: 1rem;
+  input[type="text"]{
+    border: 1px solid rgba(0, 0, 0, .8);
+    border-radius: 6px;
+    padding: .5rem
+  }
+  ::placeholder {
+    color: rgba(0, 0, 0, .3);
+  }
+  span {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: #FF4C4C;
+    font-weight: 700;
+    word-spacing: .7rem;
+    text-decoration: underline double;
   }
 }

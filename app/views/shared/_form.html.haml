@@ -15,5 +15,8 @@
     - else
       %img.img-responsive.img-rounded(src="http://via.placeholder.com/128x128")/  
     = f.input :image, label: false, :class => "form-control"
+    = simple_fields_for @folder do |p|
+      = collection_check_boxes :categories, :id, @all_categories, :id, :name, {}, {:multiple => true}
 
     = f.submit nil, class: "btn btn-primary"
+      
