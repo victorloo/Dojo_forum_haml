@@ -6,6 +6,10 @@
       = link_to 'Category List', admin_categories_path, class: "first active"
       = link_to 'User List', admin_users_path, class: "nonactive"
 
+    .form-inline
+      = simple_form_for [:admin, @category], html: { class: "text" } do |f|
+        = f.input_field :name, label: false, placeholder: "Category Name"
+        = f.submit nil, class: "btn btn-primary"
     %table.table.table-bordered.table-hover
       %thead
         %tr

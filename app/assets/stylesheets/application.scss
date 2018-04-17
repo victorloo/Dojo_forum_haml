@@ -29,7 +29,7 @@ textarea.form-control.text.required {
   height: 35rem;
 }
 
-.formgroup {
+.form-group {
   img {
     float: left;
   }
@@ -106,5 +106,17 @@ textarea.form-control.text.required {
   }
   .first {
     margin-right: 3rem;
+  }
+}
+
+.text {
+  padding-bottom: 1rem;
+  input[type="text"]{
+    border: 1px solid rgba(0, 0, 0, .8);
+    border-radius: 6px;
+    padding: .5rem
+  }
+  ::placeholder {
+    color: rgba(0, 0, 0, .3);
   }
 }
