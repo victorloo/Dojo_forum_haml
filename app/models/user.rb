@@ -8,6 +8,11 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :posts
 
+  USER_ROLE = [
+    ['Normal', :normal],
+    ['Admin', :admin]
+  ]
+
   def admin?
     self.role == "admin"
   end
