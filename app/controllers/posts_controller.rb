@@ -11,11 +11,19 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    @all_categories = Category.all
+    @folder = @post.folders.build
   end
 
   def create
     @post = current_user.posts.build(post_params)
     
+    params[:categories][:id].each do |category|
+      if !category.empty?
+        @post.folders.build(:category_id => category)
+      end
+    end
+        
     if @post.save
       redirect_to @post, notice: "You Created a Post!"
     else
@@ -24,9 +32,20 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @all_categories = Category.all
+    @folder = @post.folders.build
   end
 
   def update
+    folders = Folder.where(post: @post)
+    folders.destroy_all
+
+    params[:categories][:id].each do |category|
+      if !category.empty?
+        @post.folders.build(:category_id => category)
+      end
+    end
+
     if @post.update(post_params)
       redirect_to @post, notice: "You Updated this Post!"
     else

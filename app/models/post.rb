@@ -4,5 +4,5 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_many :folders, dependent: :destroy
-  has_many :folder_categories, through: :folders, source: :category
+  has_many :categories, through: :folders
 end
