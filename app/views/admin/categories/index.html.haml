@@ -1,0 +1,17 @@
+= provide :my_title, "Category List"
+
+.row
+  .col-md-12
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th
+            Name
+          %th
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.name
+            %td
+    .text-center
+      = paginate @categories
