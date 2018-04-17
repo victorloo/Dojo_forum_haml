@@ -5,4 +5,10 @@ class Post < ApplicationRecord
 
   has_many :folders, dependent: :destroy
   has_many :categories, through: :folders
+
+   POST_PRIVACY = [
+    ['All', :all],
+    ['Friend', :friend],
+    ['Myself', :myself]
+  ]
 end
