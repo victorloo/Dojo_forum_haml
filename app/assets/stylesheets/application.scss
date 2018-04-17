@@ -119,4 +119,12 @@ textarea.form-control.text.required {
   ::placeholder {
     color: rgba(0, 0, 0, .3);
   }
+  span {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: #FF4C4C;
+    font-weight: 700;
+    word-spacing: .7rem;
+    text-decoration: underline double;
+  }
 }

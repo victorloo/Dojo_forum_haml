@@ -10,6 +10,9 @@
       = simple_form_for [:admin, @category], html: { class: "text" } do |f|
         = f.input_field :name, label: false, placeholder: "Category Name"
         = f.submit nil, class: "btn btn-primary"
+        - if @category.errors.any?
+          %span= @category.errors.full_messages.to_sentence
+
     %table.table.table-bordered.table-hover
       %thead
         %tr
@@ -21,5 +24,3 @@
           %tr
             %td= category.name
             %td
-    .text-center
-      = paginate @categories
