@@ -33,3 +33,11 @@
         %i.fas.fa-pencil-alt.fa-2x
       = link_to post_path(@post), method: :delete, data: { confirm: "Are you sure?"} do
         %i.fas.fa-trash-alt.fa-2x
+
+.container
+  .row
+    = simple_form_for [@post, @comment], html: {class: "form-group"} do |f|
+      = f.input :content, placeholder: "Try to give this post a comment!", label: false, class: "form-control"
+
+      = f.submit 'Create', class: "btn btn-primary"
+      = f.button :button, 'Cancel', type: :reset, class: "btn btn-default"
