@@ -1,4 +1,4 @@
-= provide :my_title, "Fans Forum"
+= provide :my_title, "Category"
 
 .banner
   %h1 Blizzard Fans Forum
@@ -6,9 +6,9 @@
 .row
   .col-md-12
     %ul.nav.nav-tabs
-      %li.active{role: "presentation"}
+      %li{role: "presentation"}
         = link_to 'All', root_path
       - @categories.each do |category|
-        %li{role: "presentation"}
+        %li{role: "presentation", :class => [('active' if category == @category)]}
           = link_to category.name, category_path(category)
     = render 'shared/posts', objects: @posts

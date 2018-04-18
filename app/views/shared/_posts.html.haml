@@ -1,0 +1,16 @@
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th Replies count
+      %th Title
+      %th Last replied at
+      %th Viewed count
+  %tbody
+    - objects.each do |object|
+      %tr
+        %td replies
+        %td= link_to "#{object.title}", post_path(object)
+        %td last replied at
+        %td viewed count
+.text-center
+  = paginate objects

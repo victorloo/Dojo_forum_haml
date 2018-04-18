@@ -45,6 +45,14 @@ textarea.form-control.text.required {
   }
 }
 
+.nav-pills-center {
+  text-align: center;
+  li {
+    float: none;
+    display: inline-block;
+  }
+}
+
 .post-main {
   .post-author {
     width: 20%;
