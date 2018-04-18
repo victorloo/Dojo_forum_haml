@@ -1,28 +1,29 @@
 = provide :my_title, "檢視貼文"
 .container
   .row
-    .post-title
+    .post-title.col-12
       %h1
         = @post.title
         %span
           = link_to 'Collect', "#", class: "btn btn-info"
-          = link_to 'Comment', "#", class: "btn btn-info"
+          = link_to('#comment', class: "btn btn-info") do
+            Comment
       - @categories.each do |ca|
         %ul.list-inline
           %li
             [
             = ca.category.name
             ]
-        
-  .post-main
-    .post-author
+
+  .post-main.row
+    .post-author.col-md-3
       - if @post.user.avatar?
-        = image_tag @post.image, width: "300px", class: "img-responsive"
+        = image_tag @post.user.avatar, width: "300px", class: "img-responsive"
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
       %p= @post.user.name
       = link_to 'Add Friend', "#", class: "btn btn-primary"
-    .post-content
+    .post-content.col-md-9
       - if @post.image?
         = image_tag @post.image, width: "300px"
       - else
@@ -36,19 +37,27 @@
 
 .container
   .row
-    - @post.comments.each do |comment|
-      %div
-        %h4= comment.user.name.capitalize
-        %p= simple_format comment.content
-        %p.text_muted
-          %em
-            = time_ago_in_words(comment.created_at)
-            ago -
-          - if current_user.admin? || current_user == comment.user
-            = link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: "Oops! You sure??" }
     %hr/
-    = simple_form_for [@post, @comment], html: {class: "form-group"} do |f|
-      = f.input :content, placeholder: "Try to give this post a comment!", label: false, class: "form-control"
+    .comment#comment
+      - @post.comments.each do |comment|
+        .comment-author
+          - if comment.user.avatar?
+            = image_tag comment.user.avatar, width: "300px", class: "img-responsive"
+          - else
+            %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
+          %p= comment.user.name
+          = link_to 'Add Friend', "#", class: "btn btn-primary btn-sm"
+        .comment-content
+          %p= simple_format comment.content
+        - if current_user.admin? || current_user == comment.user
+          .comment-button
+            = link_to edit_post_comment_path(@post, comment) do
+              %i.fas.fa-pencil-alt.fa-2x
+            = link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"} do
+              %i.fas.fa-trash-alt.fa-2x  
+        %hr/
+    = simple_form_for [@post, @comment], html: {class: "comment-form" } do |f|
+      = f.input :content, placeholder: "Try to give tis post a comment!", label: false
 
-      = f.submit 'Create', class: "btn btn-primary"
+      = f.submit nil, class: "btn btn-primary"
       = f.button :button, 'Cancel', type: :reset, class: "btn btn-default"
