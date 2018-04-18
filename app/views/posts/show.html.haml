@@ -36,6 +36,15 @@
 
 .container
   .row
+    - @post.comments.each do |comment|
+      %div
+        %h4= comment.user.name.capitalize
+        %p= simple_format comment.content
+        %p.text_muted
+          %em
+            = time_ago_in_words(comment.created_at)
+            ago -
+    %hr/
     = simple_form_for [@post, @comment], html: {class: "form-group"} do |f|
       = f.input :content, placeholder: "Try to give this post a comment!", label: false, class: "form-control"
 
