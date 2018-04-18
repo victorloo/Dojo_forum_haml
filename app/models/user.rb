@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :posts
 
+  has_many :comments, dependent: :destroy
+
   USER_ROLE = [
     ['Normal', :normal],
     ['Admin', :admin]
