@@ -8,6 +8,9 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
+  has_many :views, dependent: :destroy
+  has_many :viewed_users, through: :views, source: :user
+
    POST_PRIVACY = [
     ['All', :all],
     ['Friend', :friend],
