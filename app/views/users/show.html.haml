@@ -1,0 +1,44 @@
+= provide :my_title, "Profile"
+
+.row
+  .user-main.col-md-12
+    .user-left.col-md-3
+      - if @user.avatar?
+        = image_tag @user.avatar, width: "300px", class: "img-responsive"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
+      %h3= @user.name
+    .user-right.col-md-9
+      %p= @user.intro
+      = link_to edit_user_path(@user) do
+        %i.fas.fa-pen-square.fa-2x
+    .clearfix
+.row
+  .portfolio-main.col-md-12
+    %ul.nav.nav-tabs
+      %li.active{role: "presentation"}
+        = link_to 'My Post', user_path
+      %li{role: "presentation"}
+        = link_to "My Comment", comments_user_path
+      %li{role: "presentation"}
+        = link_to "My Collect", "#"
+      %li{role: "presentation"}
+        = link_to "My Draft", "#"
+      %li{role: "presentation"}
+        = link_to "My Friend", "#"
+    %table.table.table-bordered.table-hover
+      %tbody
+        - @posts.each do |post|
+          %tr
+            %td
+              = link_to post.title, post_path(post)
+            %td
+              Post Status
+            %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
+            %td
+              = link_to edit_post_path(post) do
+                %i.fas.fa-pencil-alt.fa-2x
+              = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+                %i.fas.fa-trash-alt.fa-2x
+  .text-center
+    = paginate @posts

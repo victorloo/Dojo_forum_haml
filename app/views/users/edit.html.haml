@@ -1,0 +1,14 @@
+= provide :my_title, "Edit Profile"
+
+.row
+  .user-edit.col-md-12
+    = simple_form_for @user do |f|
+      = f.input :name, label: false
+      = f.input :intro, label: false, placeholder: "Tell everyone What you want to say"
+      - if @user.avatar?
+        = image_tag @user.avatar, width: "300px", class: "img-responsive"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/300x300")/
+      = f.input :avatar, label: false
+
+      = f.submit 'Submit', class: "btn btn-primary"
