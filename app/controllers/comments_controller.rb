@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
     @post.lastreplies = @comment.created_at
     @post.save
-    redirect_to post_path(@post)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
     if current_user.admin?
       @comment.destroy
-      redirect_to post_path(@post)
+      redirect_back(fallback_location: root_path)
     end
   end
 
