@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @categories = @post.folders
+    @comment = Comment.new
   end
 
   def new
