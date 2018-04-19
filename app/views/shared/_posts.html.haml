@@ -8,9 +8,14 @@
   %tbody
     - objects.each do |object|
       %tr
-        %td replies
+        %td
+          .replies_count= object.comments_count
         %td= link_to "#{object.title}", post_path(object)
-        %td last replied at
+        %td
+          - if object.comments.size == 0
+            %p Give a reply!
+          - else
+            = object.comments.last.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
         %td
           %i.fas.fa-eye.fa-sm
           = object.views_count
