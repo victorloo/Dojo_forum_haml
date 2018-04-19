@@ -10,6 +10,9 @@ class PostsController < ApplicationController
   def show
     @categories = @post.folders
     @comment = Comment.new
+    
+    @view = @post.views.build(user: current_user)
+    @view.save
   end
 
   def new

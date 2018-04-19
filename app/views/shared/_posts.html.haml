@@ -11,6 +11,8 @@
         %td replies
         %td= link_to "#{object.title}", post_path(object)
         %td last replied at
-        %td viewed count
+        %td
+          %i.fas.fa-eye.fa-sm
+          = object.views_count
 .text-center
   = paginate objects

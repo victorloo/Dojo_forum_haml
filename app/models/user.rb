@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
+  has_many :views, dependent: :destroy
+  has_many :viewed_posts, through: :views, source: :post
+
   USER_ROLE = [
     ['Normal', :normal],
     ['Admin', :admin]
