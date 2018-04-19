@@ -2,7 +2,7 @@ class BaseIndexController < ApplicationController
   private
   
   def sortable_columns
-    ["comments_count", "views_count"]
+    ["comments_count", "lastreplies", "views_count"]
   end
 
   def sort_column

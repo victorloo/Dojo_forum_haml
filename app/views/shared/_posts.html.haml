@@ -3,7 +3,7 @@
     %tr
       %th= sort_link 'comments_count', 'Replies count'
       %th Title
-      %th Last replied at
+      %th= sort_link 'lastreplies', 'Last replied at'
       %th= sort_link 'views_count', 'Viewed count'
   %tbody
     - objects.each do |object|
@@ -15,7 +15,7 @@
           - if object.comments.size == 0
             %p Give a reply!
           - else
-            = object.comments.last.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
+            = object.lastreplies.in_time_zone('Taipei').strftime("%Y-%m-%d")
         %td
           %i.fas.fa-eye.fa-sm
           = object.views_count
