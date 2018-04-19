@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < BaseIndexController
   before_action :find_post, only: [:edit, :update, :show, :destroy]
   skip_before_action :authenticate_user!, only: :index
 
@@ -77,15 +77,4 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def sortable_columns
-    ["comments_count", "views_count"]
-  end
-
-  def sort_column
-    sortable_columns.include?(params[:column]) ? params[:column] : "id"
-  end
-
-  def sort_direction
-    %w[desc asc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
 end
