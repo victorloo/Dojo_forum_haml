@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419163758) do
+ActiveRecord::Schema.define(version: 20180419193742) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20180419163758) do
     t.string "image"
     t.string "privacy"
     t.integer "views_count", default: 0
+    t.integer "comments_count", default: 0
+    t.datetime "lastreplies"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

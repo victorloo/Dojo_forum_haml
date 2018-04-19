@@ -5,6 +5,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
     @comment.save!
+
+    @post.lastreplies = @comment.created_at
+    @post.save
     redirect_to post_path(@post)
   end
 

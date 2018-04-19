@@ -1,16 +1,21 @@
 %table.table.table-bordered.table-hover
   %thead
     %tr
-      %th Replies count
+      %th= sort_link 'comments_count', 'Replies count'
       %th Title
-      %th Last replied at
-      %th Viewed count
+      %th= sort_link 'lastreplies', 'Last replied at'
+      %th= sort_link 'views_count', 'Viewed count'
   %tbody
     - objects.each do |object|
       %tr
-        %td replies
+        %td
+          .replies_count= object.comments_count
         %td= link_to "#{object.title}", post_path(object)
-        %td last replied at
+        %td
+          - if object.comments.size == 0
+            %p Give a reply!
+          - else
+            = object.lastreplies.in_time_zone('Taipei').strftime("%Y-%m-%d")
         %td
           %i.fas.fa-eye.fa-sm
           = object.views_count

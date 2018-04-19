@@ -138,6 +138,14 @@ textarea.form-control.text.required {
   }
 }
 
+.replies_count {
+  text-align: center;
+  border: 1px solid #D1CCD4;
+  background: greenyellow;
+  max-width: 20%;
+  margin: auto;
+}
+
 .text {
   padding-bottom: 1rem;
   input[type="text"]{
