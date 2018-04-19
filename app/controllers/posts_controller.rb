@@ -2,14 +2,17 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy]
   skip_before_action :authenticate_user!, only: :index
 
+  helper_method :sort_column, :sort_direction
+
   def index
-    @posts = Post.order(id: :asc).page(params[:page]).per(5)
+    @posts = Post.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
     @categories = Category.all
   end
 
   def show
     @categories = @post.folders
     @comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(20)
     
     @view = @post.views.build(user: current_user)
     @view.save
@@ -74,4 +77,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def sortable_columns
+    ["comments_count", "views_count"]
+  end
+
+  def sort_column
+    sortable_columns.include?(params[:column]) ? params[:column] : "id"
+  end
+
+  def sort_direction
+    %w[desc asc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

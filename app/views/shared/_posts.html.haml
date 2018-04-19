@@ -1,10 +1,10 @@
 %table.table.table-bordered.table-hover
   %thead
     %tr
-      %th Replies count
+      %th= sort_link 'comments_count', 'Replies count'
       %th Title
       %th Last replied at
-      %th Viewed count
+      %th= sort_link 'views_count', 'Viewed count'
   %tbody
     - objects.each do |object|
       %tr
