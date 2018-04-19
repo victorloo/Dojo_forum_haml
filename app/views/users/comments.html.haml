@@ -1,4 +1,4 @@
-= provide :my_title, "Profile"
+= provide :my_title, "User's Comments"
 
 .row
   .user-main.col-md-12
@@ -16,9 +16,9 @@
 .row
   .portfolio-main.col-md-12
     %ul.nav.nav-tabs
-      %li.active{role: "presentation"}
-        = link_to 'My Post', user_path
       %li{role: "presentation"}
+        = link_to 'My Post', user_path
+      %li.active{role: "presentation"}
         = link_to "My Comment", comments_user_path
       %li{role: "presentation"}
         = link_to "My Collect", "#"
@@ -28,17 +28,16 @@
         = link_to "My Friend", "#"
     %table.table.table-bordered.table-hover
       %tbody
-        - @posts.each do |post|
+        - @comments.each do |comment|
           %tr
+            %th= link_to comment.post.title, post_path(comment.post)
+            %th
+          %tr
+            %td= comment.content
             %td
-              = link_to post.title, post_path(post)
-            %td
-              Post Status
-            %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
-            %td
-              = link_to edit_post_path(post) do
+              = link_to edit_post_comment_path(comment.post, comment) do
                 %i.fas.fa-pencil-alt.fa-2x
-              = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+              = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?"} do
                 %i.fas.fa-trash-alt.fa-2x
   .text-center
-    = paginate @posts
+    = paginate @comments

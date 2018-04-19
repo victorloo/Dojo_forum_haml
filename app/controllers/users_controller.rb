@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, :comments]
 
   def show
     @posts = @user.posts.page(params[:page]).per(20)
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def comments
+    @comments = @user.comments.includes(:post).page(params[:page]).per(20)
   end
   
   private
