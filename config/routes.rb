@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :posts do
     resources :comments, only: [:create, :edit, :update, :destroy]
+    collection do
+      get :feeds
+    end
   end
   root 'posts#index'
   resources :categories, only: :show
