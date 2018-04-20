@@ -1,0 +1,31 @@
+= provide :my_title, "Feeds"
+.row
+  .col-md-12
+    .banner-feeds
+      .col-md-4
+        %h2 User
+        .feeds-number
+          %p= @users_size
+      .col-md-4
+        %h2 Post
+        .feeds-number
+          %p= @posts_size
+      .col-md-4
+        %h2 Comment
+        .feeds-number
+          %p= @comments_size
+  .col-md-12
+    .feeds-list
+      .col-md-6
+        %h2 Chatterbox
+        %ol
+          %li
+            name
+            comments
+      .col-md-6
+        %h2 Most Popular Post
+        %ol
+          - @popular_posts.each do |post|
+            %li
+              = link_to post.title, post_path(post)
+              %span= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
