@@ -1,32 +1,33 @@
 = provide :my_title, "Feeds"
 .row
-  .col-md-12
-    .banner-feeds
-      .col-md-4
-        %h2 User
-        .feeds-number
-          %p= @users_size
-      .col-md-4
-        %h2 Post
-        .feeds-number
-          %p= @posts_size
-      .col-md-4
-        %h2 Comment
-        .feeds-number
-          %p= @comments_size
+  .banner-feeds.col-md-12
+    .col-md-4
+      %h1 User
+      .feeds-number
+        %p= @users_size
+    .col-md-4
+      %h1 Post
+      .feeds-number
+        %p= @posts_size
+    .col-md-4
+      %h1 Comment
+      .feeds-number
+        %p= @comments_size
+.row
   .col-md-12
     .feeds-list
-      .col-md-6
+      .chatterbox.col-md-6
         %h2 Chatterbox
         %ol
           - @chatter_users.each do |user|
             %li
               = link_to user.name, user_path(user)
               %span= user.comments_count
-      .col-md-6
+      .mostpopular.col-md-6
         %h2 Most Popular Post
         %ol
           - @popular_posts.each do |post|
             %li
-              = link_to post.title, post_path(post)
+              = link_to post_path(post) do
+                = truncate(post.title, length: 30)
               %span= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
