@@ -67,6 +67,14 @@ class PostsController < BaseIndexController
     redirect_to root_path, alert: "You Deleted this Post!!!"
   end
 
+  def feeds
+    @users_size = User.all.size
+    @posts_size = Post.all.size
+    @comments_size = Comment.all.size
+    @chatter_users = User.all.order(comments_count: :desc).limit(10)
+    @popular_posts = Post.all.order(comments_count: :desc).limit(10)
+  end
+
   private
 
   def post_params

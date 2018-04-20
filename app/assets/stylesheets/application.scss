@@ -165,3 +165,72 @@ textarea.form-control.text.required {
     text-decoration: underline double;
   }
 }
+
+.banner-feeds {
+  background: #C6FFF1;
+  padding-bottom: 2rem;
+  h1 {
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 3px;
+  }
+  p {
+    font-size: 2.75rem;
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    border: 1px solid #FFF;
+    box-shadow: 1px 6px 10px 2px #888888;
+    background: #E2E8B8;
+  }
+}
+
+.chatterbox, .mostpopular {
+  margin: auto;
+  h2 {
+    border-bottom: 2px solid #E8BC83;
+    padding-top: 2rem;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #B0E8B3;
+  }
+  ol {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    background: #E2E8CE;
+    padding-right: 10px;
+    li {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #D1B847;
+      a {
+        margin: auto;
+        color: #E8B0A2
+      }
+      span {
+        float: right;
+        padding-left: 5rem;
+      }
+    }
+  }
+}
+
+.mostpopular {
+  ol {
+    width: 80%;
+    li {
+      font-size: 2rem;
+      a {
+        float: left;
+      }
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
