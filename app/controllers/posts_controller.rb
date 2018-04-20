@@ -71,7 +71,7 @@ class PostsController < BaseIndexController
     @users_size = User.all.size
     @posts_size = Post.all.size
     @comments_size = Comment.all.size
-
+    @chatter_users = User.all.order(comments_count: :desc).limit(10)
     @popular_posts = Post.all.order(comments_count: :desc).limit(10)
   end
 
