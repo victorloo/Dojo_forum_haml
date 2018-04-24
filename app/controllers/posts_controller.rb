@@ -33,11 +33,21 @@ class PostsController < BaseIndexController
         @post.folders.build(:category_id => category)
       end
     end
-        
-    if @post.save
-      redirect_to @post, notice: "You Created a Post!"
+
+    if params[:commit] == 'Save as Draft'
+      @post.status = "draft"
+      if @post.save
+        redirect_to drafts_user_path(current_user), notice: "There is your drafts"
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      @post.status = "published"
+      if @post.save
+        redirect_to @post, notice: "You Created a Post!"
+      else
+        render 'new'
+      end
     end
   end
 
@@ -56,10 +66,20 @@ class PostsController < BaseIndexController
       end
     end
 
-    if @post.update(post_params)
-      redirect_to @post, notice: "You Updated this Post!"
+    if params[:commit] == 'Save as Draft'
+      @post.status = "draft"
+      if @post.update(post_params)
+        redirect_to drafts_user_path(current_user), notice: "You updated a draft."
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      @post.status = "published"
+      if @post.update(post_params)
+        redirect_to @post, notice: "You Updated this Post!"
+      else
+        render 'edit'
+      end
     end
   end
 
