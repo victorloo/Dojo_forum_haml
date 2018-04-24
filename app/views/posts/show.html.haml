@@ -4,10 +4,8 @@
     .post-title.col-12
       %h1
         = @post.title
-        %span
-          = link_to 'Collect', "#", class: "btn btn-info"
-          = link_to('#comment', class: "btn btn-info") do
-            Comment
+        %span#collect-block
+          = render 'collect'
       - @categories.each do |ca|
         %ul.list-inline
           %li

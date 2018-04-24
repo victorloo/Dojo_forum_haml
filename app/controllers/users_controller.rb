@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :comments]
+  before_action :find_user, only: [:show, :edit, :update, :comments, :collections]
 
   def show
     @posts = @user.posts.page(params[:page]).per(20)
@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
 
   def comments
-    @comments = @user.comments.includes(:post).page(params[:page]).per(20)
+    @comments = @user.comments.includes(:post).order("comments.created_at desc").page(params[:page]).per(20)
+  end
+
+  def collections
+    @collections = @user.collected_posts.order("collections.created_at desc").page(params[:page]).per(20)
   end
   
   private

@@ -1,0 +1,6 @@
+- if @post.is_collected?(current_user)
+  = link_to 'Discollect', discollect_post_path(@post), method: :post, remote: true, class: "btn btn-danger"
+- else
+  = link_to 'Collect', collect_post_path(@post), method: :post, remote: true, class: "btn btn-info"
+= link_to('#comment', class: "btn btn-info") do
+  Comment

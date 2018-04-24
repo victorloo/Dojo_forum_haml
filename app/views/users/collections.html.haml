@@ -1,4 +1,4 @@
-= provide :my_title, "Profile"
+= provide :my_title, "User's Collections"
 
 .row
   .user-main.col-md-12
@@ -16,11 +16,11 @@
 .row
   .portfolio-main.col-md-12
     %ul.nav.nav-tabs
-      %li.active{role: "presentation"}
+      %li{role: "presentation"}
         = link_to 'My Post', user_path
       %li{role: "presentation"}
         = link_to "My Comment", comments_user_path
-      %li{role: "presentation"}
+      %li.active{role: "presentation"}
         = link_to "My Collect", collections_user_path
       %li{role: "presentation"}
         = link_to "My Draft", "#"
@@ -28,17 +28,9 @@
         = link_to "My Friend", "#"
     %table.table.table-bordered.table-hover
       %tbody
-        - @posts.each do |post|
+        - @collections.each do |collection|
           %tr
-            %td
-              = link_to post.title, post_path(post)
-            %td
-              Post Status
-            %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
-            %td
-              = link_to edit_post_path(post) do
-                %i.fas.fa-pencil-alt.fa-2x
-              = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
-                %i.fas.fa-trash-alt.fa-2x
+            %th= link_to collection.title, post_path(collection)
+            %td= link_to 'Discollect', discollect_post_path(collection), method: :post, class: "btn btn-danger"
   .text-center
-    = paginate @posts
+    = paginate @collections

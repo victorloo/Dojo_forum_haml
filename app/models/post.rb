@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include PostsHelper
   mount_uploader :image, ImageUploader
   validates :title, :content, presence: true
   belongs_to :user
@@ -10,6 +11,9 @@ class Post < ApplicationRecord
 
   has_many :views, dependent: :destroy
   has_many :viewed_users, through: :views, source: :user
+
+  has_many :collections, dependent: :destroy
+  has_many :collected_users, through: :collections, source: :user
 
    POST_PRIVACY = [
     ['All', :all],
