@@ -77,13 +77,21 @@ class PostsController < BaseIndexController
 
   def collect
     @post.collections.create!(user: current_user)
-    redirect_back(fallback_location: root_path)
+
+    respond_to do |format|
+      format.html{redirect_back(fallback_location: root_path)}
+      format.js
+    end
   end
   
   def discollect
     collections = Collection.where(post: @post, user: current_user)
     collections.destroy_all
-    redirect_back(fallback_location: root_path)
+
+    respond_to do |format|
+      format.html{ redirect_back(fallback_location: root_path) }
+      format.js { render 'collect' }
+    end
   end
 
   private

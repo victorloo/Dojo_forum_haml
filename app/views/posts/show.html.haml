@@ -4,13 +4,8 @@
     .post-title.col-12
       %h1
         = @post.title
-        %span
-          - if @post.is_collected?(current_user)
-            = link_to 'Discollect', discollect_post_path(@post), method: :post, class: "btn btn-danger"
-          - else
-            = link_to 'Collect', collect_post_path(@post), method: :post, class: "btn btn-info"
-          = link_to('#comment', class: "btn btn-info") do
-            Comment
+        %span#collect-block
+          = render 'collect'
       - @categories.each do |ca|
         %ul.list-inline
           %li
