@@ -1,0 +1,46 @@
+= provide :my_title, "User's Drafts"
+
+.row
+  .user-main.col-md-12
+    .user-left.col-md-3
+      - if @user.avatar?
+        = image_tag @user.avatar, width: "300px", class: "img-responsive"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
+      %h3= @user.name
+    .user-right.col-md-9
+      %p= @user.intro
+      = link_to edit_user_path(@user) do
+        %i.fas.fa-pen-square.fa-2x
+    .clearfix
+.row
+  .portfolio-main.col-md-12
+    %ul.nav.nav-tabs
+      %li{role: "presentation"}
+        = link_to 'My Post', user_path
+      %li{role: "presentation"}
+        = link_to "My Comment", comments_user_path
+      %li{role: "presentation"}
+        = link_to "My Collect", collections_user_path
+      %li.active{role: "presentation"}
+        = link_to "My Draft",  drafts_user_path
+      %li{role: "presentation"}
+        = link_to "My Friend", "#"
+    %table.table.table-bordered.table-hover
+      %tbody
+        - if @drafts == []
+          %tr
+            %th There is no Draft!
+        - else
+          - @drafts.each do |draft|
+            %tr
+              %th= draft.title
+              %td Draft
+              %td= draft.created_at
+              %td
+                = link_to edit_post_path(draft) do
+                  %i.fas.fa-pencil-alt.fa-2x
+                = link_to post_path(draft), method: :delete, data: { confirm: "Are you sure?"} do
+                  %i.fas.fa-trash-alt.fa-2x
+  .text-center
+    = paginate @drafts
