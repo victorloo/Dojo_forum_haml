@@ -5,7 +5,8 @@
       %h1
         = @post.title
         %span
-          = link_to 'Collect', "#", class: "btn btn-info"
+          = link_to 'Collect', collect_post_path(@post), method: :post, class: "btn btn-info"
+          = link_to 'Discollect', discollect_post_path(@post), method: :post, class: "btn btn-danger"
           = link_to('#comment', class: "btn btn-info") do
             Comment
       - @categories.each do |ca|

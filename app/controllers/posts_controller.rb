@@ -1,5 +1,5 @@
 class PostsController < BaseIndexController
-  before_action :find_post, only: [:edit, :update, :show, :destroy]
+  before_action :find_post, only: [:edit, :update, :show, :destroy, :collect, :discollect]
   skip_before_action :authenticate_user!, only: :index
 
   helper_method :sort_column, :sort_direction
@@ -73,6 +73,17 @@ class PostsController < BaseIndexController
     @comments_size = Comment.all.size
     @chatter_users = User.all.order(comments_count: :desc).limit(10)
     @popular_posts = Post.all.order(comments_count: :desc).limit(10)
+  end
+
+  def collect
+    @post.collections.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+  
+  def discollect
+    collections = Collection.where(post: @post, user: current_user)
+    collections.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private
