@@ -5,7 +5,8 @@ class PostsController < BaseIndexController
   helper_method :sort_column, :sort_direction
 
   def index
-    @posts = Post.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
+    published = Post.all.where(status: "published")
+    @posts = published.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
     @categories = Category.all
   end
 
