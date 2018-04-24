@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :comments, :collections]
+  before_action :find_user, only: [:show, :edit, :update, :comments, :collections, :drafts]
 
   def show
     @posts = @user.posts.page(params[:page]).per(20)
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
   def collections
     @collections = @user.collected_posts.order("collections.created_at desc").page(params[:page]).per(20)
+  end
+
+  def drafts
+    @drafts = @user.posts.where(status: "draft").order("created_at desc").page(params[:page]).per(20)
   end
   
   private

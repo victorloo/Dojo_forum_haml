@@ -20,5 +20,11 @@
     %p Category
     = simple_fields_for @folder do |p|
       = collection_check_boxes :categories, :id, @all_categories, :id, :name, {}, {:multiple => true}
+    %p
+      Status:
+      - if object.status?
+        = object.status.capitalize
+    
+    = f.submit 'Save as Draft', class: "btn btn-default"
     = f.submit nil, class: "btn btn-primary"
       

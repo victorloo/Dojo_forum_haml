@@ -5,7 +5,8 @@ class PostsController < BaseIndexController
   helper_method :sort_column, :sort_direction
 
   def index
-    @posts = Post.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
+    published = Post.all.where(status: "published")
+    @posts = published.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
     @categories = Category.all
   end
 
@@ -32,11 +33,21 @@ class PostsController < BaseIndexController
         @post.folders.build(:category_id => category)
       end
     end
-        
-    if @post.save
-      redirect_to @post, notice: "You Created a Post!"
+
+    if params[:commit] == 'Save as Draft'
+      @post.status = "draft"
+      if @post.save
+        redirect_to drafts_user_path(current_user), notice: "There is your drafts"
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      @post.status = "published"
+      if @post.save
+        redirect_to @post, notice: "You Created a Post!"
+      else
+        render 'new'
+      end
     end
   end
 
@@ -55,16 +66,31 @@ class PostsController < BaseIndexController
       end
     end
 
-    if @post.update(post_params)
-      redirect_to @post, notice: "You Updated this Post!"
+    if params[:commit] == 'Save as Draft'
+      @post.status = "draft"
+      if @post.update(post_params)
+        redirect_to drafts_user_path(current_user), notice: "You updated a draft."
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      @post.status = "published"
+      if @post.update(post_params)
+        redirect_to @post, notice: "You Updated this Post!"
+      else
+        render 'edit'
+      end
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to root_path, alert: "You Deleted this Post!!!"
+    if params[:from] == "my_drafts"
+      flash[:alert] = "You just deleted a draft."
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to root_path, alert: "You Deleted this Post!!!"
+    end
   end
 
   def feeds
