@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     collection do
       get :feeds
     end
+    member do
+      post :collect
+      post :discollect
+    end
+    
   end
   root 'posts#index'
   resources :categories, only: :show
