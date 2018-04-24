@@ -85,7 +85,12 @@ class PostsController < BaseIndexController
 
   def destroy
     @post.destroy
-    redirect_to root_path, alert: "You Deleted this Post!!!"
+    if params[:from] == "my_drafts"
+      flash[:alert] = "You just deleted a draft."
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to root_path, alert: "You Deleted this Post!!!"
+    end
   end
 
   def feeds

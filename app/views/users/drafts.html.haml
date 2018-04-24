@@ -40,7 +40,7 @@
               %td
                 = link_to edit_post_path(draft) do
                   %i.fas.fa-pencil-alt.fa-2x
-                = link_to post_path(draft), method: :delete, data: { confirm: "Are you sure?"} do
+                = link_to post_path(draft, from: "my_drafts"), method: :delete, data: { confirm: "Are you sure?"} do
                   %i.fas.fa-trash-alt.fa-2x
   .text-center
     = paginate @drafts
