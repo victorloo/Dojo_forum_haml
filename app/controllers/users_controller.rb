@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @target_friends = current_user.targets
+    @target_friends = current_user.waiting_friend
     @applicants = current_user.applicants
     @friends = current_user.all_friends
   end

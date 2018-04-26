@@ -32,6 +32,9 @@ class User < ApplicationRecord
   has_many :disregards, dependent: :destroy
   has_many :nobodys, through: :disregards
 
+  has_many :inverse_disregards, class_name: "Disregard", foreign_key: "nobody_id"
+  has_many :inverse_nobodys, through: :inverse_disregards, source: :user
+
   USER_ROLE = [
     ['Normal', :normal],
     ['Admin', :admin]
