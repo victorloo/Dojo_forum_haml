@@ -19,7 +19,7 @@
         = image_tag @post.user.avatar, width: "300px", class: "img-responsive"
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
-      %p= @post.user.name
+      %p= link_to @post.user.name, user_path(@post.user)
       = link_to 'Add Friend', applyings_path(target_id: @post.user), method: :post, class: "btn btn-primary"
     .post-content.col-md-9
       - if @post.image?
