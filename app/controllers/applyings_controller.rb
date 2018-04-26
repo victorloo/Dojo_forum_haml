@@ -10,4 +10,23 @@ class ApplyingsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def confirm
+    @friend = current_user.confirmations.build(friend_id: params[:friend_id])
+
+    if @friend.save
+      applying = Applying.where(user_id: params[:friend_id], target_id: current_user.id)
+      applying.destroy_all
+
+      flash[:notice] = "接受邀請"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = @friend.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
+    end
+  end
+  
+  def ignore
+    
+  end
 end
