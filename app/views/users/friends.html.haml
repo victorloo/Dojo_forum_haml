@@ -26,3 +26,44 @@
         = link_to "My Draft",  drafts_user_path
       %li.active{role: "presentation"}
         = link_to "My Friend", friends_user_path
+    .friend-waiting
+      %h3 Waiting for response
+      - if @target_friends.empty?
+        %p 你這陣子沒有申請朋友
+      - else
+        - @target_friends.each do |target|
+          .col-md-1
+            - if target.avatar?
+              = image_tag target.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            =target.name.capitalize
+          .clearfix
+    %hr/
+    .friend-decision
+      %h3 這陣子的申請者
+      - if @applicants.empty?
+        %p 這陣子沒有新的邀請
+      - else
+        - @applicants.each do |applicant|
+          .col-md-2
+            - if applicant.avatar?
+              = image_tag applicant.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            =applicant.name.capitalize
+            = link_to 'Accept', confirm_applying_path(friend_id: applicant), method: :post, class: "btn btn-success"
+            = link_to 'Ignore', ignore_applying_path(nobody_id: applicant), method: :post, class: "btn btn-warning"
+    %hr/
+    .friend-confirm
+      %h3 你的朋友清單
+      - if @friends.empty?
+        %p 你居然沒有朋友，快去找新增好友！
+      - else
+        - @friends.each do |friend|
+          .col-md-1
+            - if friend.avatar?
+              = image_tag friend.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            =friend.name.capitalize

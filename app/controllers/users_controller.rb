@@ -27,7 +27,9 @@ class UsersController < ApplicationController
   end
 
   def friends
-    
+    @target_friends = current_user.targets
+    @applicants = current_user.applicants
+    @friends = current_user.friends
   end
   
   private
