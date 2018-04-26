@@ -10,8 +10,11 @@
       %h3= @user.name
     .user-right.col-md-9
       %p= @user.intro
-      = link_to edit_user_path(@user) do
-        %i.fas.fa-pen-square.fa-2x
+      - if @user == current_user
+        = link_to edit_user_path(@user) do
+          %i.fas.fa-pen-square.fa-2x
+      - else
+        = link_to 'Add Friend', applyings_path(target_id: @user), method: :post, class: "btn btn-primary"
     .clearfix
 .row
   .portfolio-main.col-md-12
@@ -20,12 +23,13 @@
         = link_to 'My Post', user_path
       %li{role: "presentation"}
         = link_to "My Comment", comments_user_path
-      %li{role: "presentation"}
-        = link_to "My Collect", collections_user_path
-      %li{role: "presentation"}
-        = link_to "My Draft",  drafts_user_path
-      %li{role: "presentation"}
-        = link_to "My Friend", friends_user_path
+      - if @user == current_user
+        %li{role: "presentation"}
+          = link_to "My Collect", collections_user_path
+        %li{role: "presentation"}
+          = link_to "My Draft",  drafts_user_path
+        %li{role: "presentation"}
+          = link_to "My Friend", friends_user_path
     %table.table.table-bordered.table-hover
       %tbody
         - @posts.each do |post|
