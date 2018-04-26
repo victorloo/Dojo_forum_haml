@@ -24,7 +24,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :applyings, only: :create
+  resources :applyings, only: :create do
+    post :confirm
+    post :ignore
+  end
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
