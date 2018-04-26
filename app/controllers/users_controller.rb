@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :comments, :collections, :drafts]
+  before_action :find_user, only: [:show, :edit, :update, :comments, :collections, :drafts, :friends]
+  before_action :not_allowed, only: [:edit, :collections, :drafts, :friends]
 
   def show
     @posts = @user.posts.page(params[:page]).per(20)
   end
 
   def edit
-    unless @user == current_user
-      redirect_to user_path(@user)
-    end
   end
 
   def update
@@ -27,6 +25,12 @@ class UsersController < ApplicationController
   def drafts
     @drafts = @user.posts.where(status: "draft").order("created_at desc").page(params[:page]).per(20)
   end
+
+  def friends
+    @target_friends = current_user.waiting_friend
+    @applicants = current_user.applicants
+    @friends = current_user.all_friends
+  end
   
   private
 
@@ -36,6 +40,12 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def not_allowed
+    unless @user == current_user
+      redirect_to user_path(@user), alert: "Not allowed!"
+    end
   end
   
 end

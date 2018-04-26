@@ -20,6 +20,14 @@ Rails.application.routes.draw do
       get :comments
       get :collections
       get :drafts
+      get :friends
+    end
+  end
+
+  resources :applyings, only: :create do
+    member do
+      post :confirm
+      post :ignore
     end
   end
 

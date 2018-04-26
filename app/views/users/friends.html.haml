@@ -1,0 +1,69 @@
+= provide :my_title, "User's Friends"
+
+.row
+  .user-main.col-md-12
+    .user-left.col-md-3
+      - if @user.avatar?
+        = image_tag @user.avatar, width: "300px", class: "img-responsive"
+      - else
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
+      %h3= @user.name
+    .user-right.col-md-9
+      %p= @user.intro
+      = link_to edit_user_path(@user) do
+        %i.fas.fa-pen-square.fa-2x
+    .clearfix
+.row
+  .portfolio-main.col-md-12
+    %ul.nav.nav-tabs
+      %li{role: "presentation"}
+        = link_to 'My Post', user_path
+      %li{role: "presentation"}
+        = link_to "My Comment", comments_user_path
+      %li{role: "presentation"}
+        = link_to "My Collect", collections_user_path
+      %li{role: "presentation"}
+        = link_to "My Draft",  drafts_user_path
+      %li.active{role: "presentation"}
+        = link_to "My Friend", friends_user_path
+    .friend-waiting
+      %h3 Waiting for response
+      - if @target_friends.empty?
+        %p 你這陣子沒有申請朋友
+      - else
+        - @target_friends.each do |target|
+          .col-md-1
+            - if target.avatar?
+              = image_tag target.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            %p= link_to target.name.capitalize, user_path(target)
+          .clearfix
+    %hr/
+    .friend-decision
+      %h3 這陣子的申請者
+      - if @applicants.empty?
+        %p 這陣子沒有新的邀請
+      - else
+        - @applicants.each do |applicant|
+          .col-md-2
+            - if applicant.avatar?
+              = image_tag applicant.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            %p= link_to applicant.name.capitalize, user_path(applicant)
+            %p#decision-block
+              = render 'decision', object: applicant
+    %hr/
+    .friend-confirm
+      %h3 你的朋友清單
+      - if @friends.empty?
+        %p 你居然沒有朋友，快去找新增好友！
+      - else
+        - @friends.each do |friend|
+          .col-md-1
+            - if friend.avatar?
+              = image_tag friend.avatar, width: '32px', class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
+            %p= link_to friend.name.capitalize, user_path(friend)
