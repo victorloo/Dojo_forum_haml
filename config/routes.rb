@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   end
 
   resources :applyings, only: :create do
-    post :confirm
-    post :ignore
+    member do
+      post :confirm
+      post :ignore
+    end
   end
 
   namespace :admin do
