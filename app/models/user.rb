@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :applyings, dependent: :destroy
   has_many :targets, through: :applyings
 
+  has_many :inverse_applyings, class_name: "Applying", foreign_key: "target_id"
+  has_many :applicants, through: :inverse_applyings, source: :user
+
   has_many :confirmations, dependent: :destroy
   has_many :friends, through: :confirmations
 
