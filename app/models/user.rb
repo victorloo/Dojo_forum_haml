@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :collections, dependent: :destroy
   has_many :collected_posts, through: :collections, source: :post
 
+  has_many :applyings, dependent: :destroy
+  has_many :targets, through: :applyings
+
   USER_ROLE = [
     ['Normal', :normal],
     ['Admin', :admin]
