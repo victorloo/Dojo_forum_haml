@@ -19,6 +19,12 @@ class User < ApplicationRecord
   has_many :applyings, dependent: :destroy
   has_many :targets, through: :applyings
 
+  has_many :confirmations, dependent: :destroy
+  has_many :friends, through: :confirmations
+
+  has_many :inverse_confirmations, class_name: "Confirmation", foreign_key: "friend_id"
+  has_many :inverse_friends, through: :inverse_confirmations, source: :user
+
   USER_ROLE = [
     ['Normal', :normal],
     ['Admin', :admin]
