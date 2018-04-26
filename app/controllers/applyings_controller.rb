@@ -18,8 +18,10 @@ class ApplyingsController < ApplicationController
       applying = Applying.where(user_id: params[:friend_id], target_id: current_user.id)
       applying.destroy_all
 
-      flash[:notice] = "接受邀請"
-      redirect_back(fallback_location: root_path)
+      respond_to do |format|
+        format.html{ redirect_back(fallback_location: root_path) }
+        format.js { render 'decision'}
+      end
     else
       flash[:alert] = @friend.errors.full_messages.to_sentence
       redirect_back(fallback_location: root_path)
@@ -33,11 +35,14 @@ class ApplyingsController < ApplicationController
       applying = Applying.where(user_id: params[:nobody_id], target_id: current_user.id)
       applying.destroy_all
 
-      flash[:notice] = "已忽略該用戶"
-      redirect_back(fallback_location: root_path)
+      respond_to do |format|
+        format.html{ redirect_back(fallback_location: root_path) }
+        format.js { render 'decision'}
+      end
     else
       flash[:alert] = @nobody.errors.full_messages.to_sentence
       redirect_back(fallback_location: root_path)
     end
   end
+
 end

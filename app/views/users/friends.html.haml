@@ -52,8 +52,8 @@
             - else
               %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
             %p= link_to applicant.name.capitalize, user_path(applicant)
-            = link_to 'Accept', confirm_applying_path(friend_id: applicant), method: :post, class: "btn btn-success"
-            = link_to 'Ignore', ignore_applying_path(nobody_id: applicant), method: :post, class: "btn btn-warning"
+            %p#decision-block
+              = render 'decision', object: applicant
     %hr/
     .friend-confirm
       %h3 你的朋友清單

@@ -1,0 +1,4 @@
+- if current_user.applicants
+  = link_to 'Accept', confirm_applying_path(friend_id: object), method: :post, remote: true, class: "btn btn-success"
+  %br/
+  = link_to 'Ignore', ignore_applying_path(nobody_id: object), method: :post, remote: true, class: "btn btn-warning"
