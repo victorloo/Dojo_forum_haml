@@ -37,7 +37,7 @@
               = image_tag target.avatar, width: '32px', class: "img-responsive"
             - else
               %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
-            =target.name.capitalize
+            %p= link_to target.name.capitalize, user_path(target)
           .clearfix
     %hr/
     .friend-decision
@@ -51,7 +51,7 @@
               = image_tag applicant.avatar, width: '32px', class: "img-responsive"
             - else
               %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
-            =applicant.name.capitalize
+            %p= link_to applicant.name.capitalize, user_path(applicant)
             = link_to 'Accept', confirm_applying_path(friend_id: applicant), method: :post, class: "btn btn-success"
             = link_to 'Ignore', ignore_applying_path(nobody_id: applicant), method: :post, class: "btn btn-warning"
     %hr/
@@ -66,4 +66,4 @@
               = image_tag friend.avatar, width: '32px', class: "img-responsive"
             - else
               %img.img-responsive.img-rounded(src="http://via.placeholder.com/48x48")/
-            =friend.name.capitalize
+            %p= link_to friend.name.capitalize, user_path(friend)
