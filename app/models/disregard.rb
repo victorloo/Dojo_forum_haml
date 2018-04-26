@@ -1,0 +1,2 @@
+class Disregard < ApplicationRecord
+end
