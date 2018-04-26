@@ -20,8 +20,11 @@ Rails.application.routes.draw do
       get :comments
       get :collections
       get :drafts
+      get :friends
     end
   end
+
+  resources :applyings, only: :create
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
