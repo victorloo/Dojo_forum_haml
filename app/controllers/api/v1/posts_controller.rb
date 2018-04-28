@@ -12,5 +12,21 @@ class Api::V1::PostsController < ApiController
       end
     }
   end
+
+  def show
+    @post = Post.find_by(id: params[:id])
+    if !@post
+      render json: {
+        message: "The post flied to heaven.",
+        status: 400
+      }
+    else
+      render json: {
+        title: @post.title,
+        content: @post.content,
+        author: @post.user.name
+      }
+    end
+  end
   
 end
