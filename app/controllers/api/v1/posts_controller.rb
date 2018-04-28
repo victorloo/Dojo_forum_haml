@@ -1,4 +1,5 @@
 class Api::V1::PostsController < ApiController
+  before_action :authenticate_user!, except: :index
   def index
     published = Post.all.where(status: "published")
     @posts = published.all
