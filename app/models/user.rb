@@ -5,6 +5,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  before_create :generate_authentication_token
 
   validates :name, presence: true
   has_many :posts
@@ -40,7 +41,4 @@ class User < ApplicationRecord
     ['Admin', :admin]
   ]
 
-  def admin?
-    self.role == "admin"
-  end
 end
