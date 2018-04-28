@@ -15,7 +15,7 @@
     - else
       %img.img-responsive.img-rounded(src="http://via.placeholder.com/400x400")/  
     %br/
-    = f.input :image, label: false, :class => "form-control"
+    = f.filestack_field :image, 'Upload Your Image!',  pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "btn btn-default"
     %p
       Who can see:
       - if object.privacy?

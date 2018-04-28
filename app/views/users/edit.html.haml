@@ -9,6 +9,7 @@
         = image_tag @user.avatar, width: "300px", class: "img-responsive"
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/300x300")/
-      = f.input :avatar, label: false
-
+      = f.filestack_field :avatar, 'Upload Your Avatar!',  pickerOptions: { accept: 'image/*', 'fromSources': 'local_file_system'}, id: 'unique-id', class: "btn btn-default"
+      %br/
+      %br/
       = f.submit 'Submit', class: "btn btn-primary"
