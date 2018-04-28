@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   include PostsHelper
   mount_uploader :image, ImageUploader
-  validates :title, :content, presence: true
+  validates :title, :content, :privacy, :status, presence: true
   belongs_to :user
 
   has_many :folders, dependent: :destroy
