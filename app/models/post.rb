@@ -15,9 +15,13 @@ class Post < ApplicationRecord
   has_many :collections, dependent: :destroy
   has_many :collected_users, through: :collections, source: :user
 
-   POST_PRIVACY = [
+  POST_PRIVACY = [
     ['All', :all],
     ['Friend', :friend],
     ['Myself', :myself]
+  ]
+  POST_STATUS = [
+    ['Save as Draft', :draft],
+    ['Published', :published]
   ]
 end
