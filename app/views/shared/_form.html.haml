@@ -11,20 +11,27 @@
     = f.input :title, label: false, placeholder: "Title", :class => "form-control"
     = f.input :content, label: false, placeholder: "Create some Magic!", :class => "form-control"
     - if object.image?
-      = image_tag object.image, width: "300px", class: "img-responsive"
+      = image_tag object.image, width: "400px", class: "img-responsive"
     - else
-      %img.img-responsive.img-rounded(src="http://via.placeholder.com/128x128")/  
+      %img.img-responsive.img-rounded(src="http://via.placeholder.com/400x400")/  
+    %br/
     = f.input :image, label: false, :class => "form-control"
-    %p Who can see
+    %p
+      Who can see:
+      - if object.privacy?
+        = object.privacy.capitalize
     = f.collection_radio_buttons :privacy, Post::POST_PRIVACY, :last, :first, { checked: Post::POST_PRIVACY.first }
-    %p Category
-    = simple_fields_for @folder do |p|
-      = collection_check_boxes :categories, :id, @all_categories, :id, :name, {}, {:multiple => true}
+    %p
+      Category:
+      - if !object.categories.empty?
+        - object.categories.each do |category|
+          %span= category.name
+    = f.collection_check_boxes :categories, Category.all, :id, :name, {multiple: true}
     %p
       Status:
       - if object.status?
         = object.status.capitalize
-    
+    %br/
     = f.submit 'Save as Draft', class: "btn btn-default"
     = f.submit nil, class: "btn btn-primary"
       

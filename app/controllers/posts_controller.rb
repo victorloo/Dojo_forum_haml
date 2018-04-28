@@ -52,15 +52,13 @@ class PostsController < BaseIndexController
   end
 
   def edit
-    @all_categories = Category.all
-    @folder = @post.folders.build
   end
 
   def update
     folders = Folder.where(post: @post)
     folders.destroy_all
 
-    params[:categories][:id].each do |category|
+    params[:post][:categories].each do |category|
       if !category.empty?
         @post.folders.build(:category_id => category)
       end

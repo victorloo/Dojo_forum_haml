@@ -1,0 +1,22 @@
+.user-main.col-md-12
+  .user-left.col-md-3
+    - if object.avatar?
+      = image_tag object.avatar, class: "img-responsive"
+    - else
+      %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
+    %h3= object.name
+  .user-right.col-md-9
+    %p= object.intro
+    - if object == current_user
+      = link_to edit_user_path(object) do
+        %i.fas.fa-pen-square.fa-2x
+    - else
+      - if current_user.friend?(object)
+        %p Friend
+      - elsif current_user.nobody?(object)
+        %p 已忽略
+      - elsif current_user.target?(object) || current_user.inverse_nobodys?(object)
+        %p 已提出申請
+      - else
+        = link_to 'Add Friend', applyings_path(target_id: object), method: :post, class: "btn btn-primary"
+  .clearfix

@@ -1,28 +1,7 @@
 = provide :my_title, "User's Comments"
 
 .row
-  .user-main.col-md-12
-    .user-left.col-md-3
-      - if @user.avatar?
-        = image_tag @user.avatar, width: "300px", class: "img-responsive"
-      - else
-        %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
-      %h3= @user.name
-    .user-right.col-md-9
-      %p= @user.intro
-      - if @user == current_user
-        = link_to edit_user_path(@user) do
-          %i.fas.fa-pen-square.fa-2x
-      - else
-        - if current_user.friend?(@user)
-          %p Friend
-        - elsif current_user.nobody?(@user)
-          %p 已忽略
-        - elsif current_user.target?(@user) || current_user.inverse_nobodys?(@user)
-          %p 已提出申請
-        - else
-          = link_to 'Add Friend', applyings_path(target_id: @user), method: :post, class: "btn btn-primary"
-    .clearfix
+  = render 'shared/profile', object: @user
 .row
   .portfolio-main.col-md-12
     %ul.nav.nav-tabs

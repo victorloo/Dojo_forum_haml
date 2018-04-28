@@ -29,29 +29,36 @@ textarea.form-control.text.required {
 }
 
 .comment {
+  hr {
+    margin: 0;
+    border-color: #d6dce0;
+  }
   .comment-author {
     width: 20%;
     height: 20%;
-    padding: 4rem 0 0 2rem;
-    border-right: 4px solid #d6dce0;
+    padding: 4rem 2rem;
     margin-bottom: -8%;
+    border-right: 2px solid #d6dce0;
     p {
       text-transform: capitalize;
       font-size: 2rem;
     }
   }
   .comment-content {
-    top: -7rem;
+    top: -10rem;
     position: relative;
-    height: 20%;;
+    width: 85%;
+    left: 17%;
     p {
       font-size: 2em;
-      text-align: center;
+      left: 4%;
+      width: 50%;
+      position: relative;
     }
   }
   .comment-button {
     position: relative;
-    margin-left: 94%;
+    margin-left: 90%;
   }
 }
 
@@ -62,18 +69,13 @@ textarea.form-control.text.required {
 }
 
 .form-group {
-  img {
-    float: left;
-  }
-  .file.optional.post_image {
-    position: fixed;
-    left: 30rem;
-    top: 50rem;
+  p {
+    span {
+      margin-right: 10px;
+    }
   }
   .btn.btn-primary {
     clear: both;
-    float: left;
-    margin-top: 3rem;
   }
 }
 
@@ -92,7 +94,6 @@ textarea.form-control.text.required {
     left: 0;
     height: 50%;
     padding: 4rem 0 0 2rem;
-    border-right: 4px solid #d6dce0;
     top: 18%;
     p {
       text-transform: capitalize;
@@ -101,10 +102,11 @@ textarea.form-control.text.required {
   }
   .post-content {
     padding-left: 3em;
+    border-left: 2px solid #d6dce0;
     p {
       font-size: 3em;
       line-height: 1.75;
-      width: 40rem;
+      width: 90%;
     }
   }
   .post-button {
@@ -232,5 +234,27 @@ textarea.form-control.text.required {
         font-size: 1.3rem;
       }
     }
+  }
+}
+
+.user-main {
+  .user-left {
+    img {
+      width: 150px;
+    }
+    h3 {
+      text-transform: capitalize;
+    }
+  }
+  .user-right {
+    p {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.friends {
+  h2 {
+    font-weight: 700;
   }
 }

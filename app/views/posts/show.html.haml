@@ -16,7 +16,7 @@
   .post-main.row
     .post-author.col-md-3
       - if @post.user.avatar?
-        = image_tag @post.user.avatar, width: "300px", class: "img-responsive"
+        = image_tag @post.user.avatar, width: "150px", class: "img-responsive"
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
       %p= link_to @post.user.name, user_path(@post.user)
@@ -30,9 +30,9 @@
         = link_to 'Add Friend', applyings_path(target_id: @post.user), method: :post, class: "btn btn-primary"
     .post-content.col-md-9
       - if @post.image?
-        = image_tag @post.image, width: "300px"
+        = image_tag @post.image, width: "400px"
       - else
-        %img.img-responsive.img-rounded(src="http://via.placeholder.com/200x200")/  
+        %img.img-responsive.img-rounded(src="http://via.placeholder.com/400x400")/  
       %p= @post.content
     .post-button
       = link_to edit_post_path(@post) do
@@ -42,12 +42,12 @@
 
 .container
   .row
-    %hr/
     .comment#comment
+      %hr/
       - @comments.each do |comment|
         .comment-author
           - if comment.user.avatar?
-            = image_tag comment.user.avatar, width: "300px", class: "img-responsive"
+            = image_tag comment.user.avatar, width: "100px", class: "img-responsive"
           - else
             %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
           %p= comment.user.name
