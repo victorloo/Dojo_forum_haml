@@ -20,7 +20,9 @@
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
       %p= link_to @post.user.name, user_path(@post.user)
-      - if current_user.friend?(@post.user)
+      - if @post.user == current_user
+        %p
+      - elsif current_user.friend?(@post.user)
         %p Friend
       - elsif current_user.nobody?(@post.user)
         %p 已忽略
