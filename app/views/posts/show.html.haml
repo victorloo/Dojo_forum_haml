@@ -16,7 +16,7 @@
   .post-main.row
     .post-author.col-md-3
       - if @post.user.avatar?
-        = image_tag @post.user.avatar, width: "300px", class: "img-responsive"
+        = image_tag @post.user.avatar, class: "img-responsive"
       - else
         %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/  
       %p= link_to @post.user.name, user_path(@post.user)
@@ -45,22 +45,23 @@
     %hr/
     .comment#comment
       - @comments.each do |comment|
-        .comment-author
-          - if comment.user.avatar?
-            = image_tag comment.user.avatar, width: "300px", class: "img-responsive"
-          - else
-            %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
-          %p= comment.user.name
-          = link_to 'Add Friend', "#", class: "btn btn-primary btn-sm"
-        .comment-content
-          %p= simple_format comment.content
-        - if current_user.admin? || current_user == comment.user
-          .comment-button
-            = link_to edit_post_comment_path(@post, comment) do
-              %i.fas.fa-pencil-alt.fa-2x
-            = link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"} do
-              %i.fas.fa-trash-alt.fa-2x  
-        %hr/
+        .comment-each
+          .comment-author
+            - if comment.user.avatar?
+              = image_tag comment.user.avatar, class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="https://cdn.filestackcontent.com/z2xAtAcQTF7KgoD67Fpf")/  
+            %p= comment.user.name
+            = link_to 'Add Friend', "#", class: "btn btn-primary btn-sm"
+          .comment-content
+            %p= simple_format comment.content
+          - if current_user.admin? || current_user == comment.user
+            .comment-button
+              = link_to edit_post_comment_path(@post, comment) do
+                %i.fas.fa-pencil-alt.fa-2x
+              = link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"} do
+                %i.fas.fa-trash-alt.fa-2x  
+          %hr/
       .text-center
         = paginate @comments
     = simple_form_for [@post, @comment], html: {class: "comment-form" } do |f|
