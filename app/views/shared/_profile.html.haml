@@ -1,7 +1,7 @@
 .user-main.col-md-12
   .user-left.col-md-3
     - if object.avatar?
-      = image_tag object.avatar, width: "150px", class: "img-responsive"
+      = image_tag object.avatar, class: "img-responsive"
     - else
       %img.img-responsive.img-rounded(src="http://via.placeholder.com/150x150")/
     %h3= object.name
