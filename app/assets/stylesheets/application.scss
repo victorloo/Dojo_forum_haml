@@ -68,11 +68,10 @@ textarea.form-control.text.required {
 }
 
 .form-group {
-  .file.optional.post_image {
-    position: relative;
-    left: 30rem;
-    top: -15rem;
-    width: 50%;
+  p {
+    span {
+      margin-right: 10px
+    }
   }
   .btn.btn-primary {
     clear: both;

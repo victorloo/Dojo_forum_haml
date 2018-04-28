@@ -11,9 +11,9 @@
     = f.input :title, label: false, placeholder: "Title", :class => "form-control"
     = f.input :content, label: false, placeholder: "Create some Magic!", :class => "form-control"
     - if object.image?
-      = image_tag object.image, width: "300px", class: "img-responsive"
+      = image_tag object.image, width: "400px", class: "img-responsive"
     - else
-      %img.img-responsive.img-rounded(src="http://via.placeholder.com/128x128")/  
+      %img.img-responsive.img-rounded(src="http://via.placeholder.com/400x400")/  
     %br/
     = f.input :image, label: false, :class => "form-control"
     %p
@@ -25,7 +25,7 @@
       Category:
       - if !object.categories.empty?
         - object.categories.each do |category|
-          =category.name
+          %span= category.name
     = f.collection_check_boxes :categories, Category.all, :id, :name, {multiple: true}
     %p
       Status:
