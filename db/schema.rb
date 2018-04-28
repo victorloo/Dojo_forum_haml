@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426203715) do
+ActiveRecord::Schema.define(version: 20180428123218) do
 
   create_table "applyings", force: :cascade do |t|
     t.integer "user_id"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20180426203715) do
     t.text "intro"
     t.string "avatar"
     t.integer "comments_count", default: 0
+    t.string "authentication_token"
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

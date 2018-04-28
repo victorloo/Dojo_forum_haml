@@ -1,4 +1,12 @@
 module UsersHelper
+  def admin?
+    self.role == "admin"
+  end
+
+  def generate_authentication_token
+    self.authentication_token = Devise.friendly_token
+  end
+
   def all_friends
     my_friends = self.friends
     inverse_friends = self.inverse_friends
