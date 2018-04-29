@@ -28,7 +28,7 @@ class PostsController < BaseIndexController
   def create
     @post = current_user.posts.build(post_params)
     
-    params[:categories][:id].each do |category|
+    params[:post][:categories].each do |category|
       if !category.empty?
         @post.folders.build(:category_id => category)
       end
