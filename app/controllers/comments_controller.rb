@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
 
     @post.lastreplies = @comment.created_at
     @post.save
-    redirect_back(fallback_location: root_path)
   end
 
   def destroy
