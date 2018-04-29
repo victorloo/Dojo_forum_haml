@@ -17,8 +17,8 @@
         %li{role: "presentation"}
           = link_to "My Friend", friends_user_path
     %table.table.table-bordered.table-hover
-      %tbody
-        - @comments.each do |comment|
+      - @comments.each do |comment|
+        %tbody{id: "comment-my_comment-#{comment.id}"}
           %tr
             %th= link_to comment.post.title, post_path(comment.post)
             %th
@@ -27,7 +27,7 @@
             %td
               = link_to edit_post_comment_path(comment.post, comment) do
                 %i.fas.fa-pencil-alt.fa-2x
-              = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?"} do
+              = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?"}, remote: true do
                 %i.fas.fa-trash-alt.fa-2x
   .text-center
     = paginate @comments
