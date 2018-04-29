@@ -63,8 +63,9 @@
         %hr/
       .text-center
         = paginate @comments
-    = simple_form_for [@post, @comment], html: {class: "comment-form" } do |f|
-      = f.input :content, placeholder: "Try to give tis post a comment!", label: false
+    - if @post.privacy == "all" || @post.privacy == "friend"
+      = simple_form_for [@post, @comment], html: {class: "comment-form" } do |f|
+        = f.input :content, placeholder: "Try to give tis post a comment!", label: false
 
-      = f.submit nil, class: "btn btn-primary"
-      = f.button :button, 'Cancel', type: :reset, class: "btn btn-default"
+        = f.submit nil, class: "btn btn-primary"
+        = f.button :button, 'Cancel', type: :reset, class: "btn btn-default"
