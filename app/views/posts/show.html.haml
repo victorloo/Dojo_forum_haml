@@ -45,24 +45,25 @@
     .comment#comment
       %hr/
       - @comments.each do |comment|
-        .comment-author
-          - if comment.user.avatar?
-            = image_tag comment.user.avatar, width: "100px", class: "img-responsive"
-          - else
-            %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
-          %p= comment.user.name
-          = link_to 'Add Friend', "#", class: "btn btn-primary btn-sm"
-        .comment-content
-          %p= simple_format comment.content
-        - if current_user.admin? || current_user == comment.user
-          .comment-button
-            = link_to edit_post_comment_path(@post, comment) do
-              %i.fas.fa-pencil-alt.fa-2x
-            = link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"} do
-              %i.fas.fa-trash-alt.fa-2x  
-        %hr/
-      .text-center
-        = paginate @comments
+        %div{id: "comment-my_comment-#{comment.id}"}
+          .comment-author
+            - if comment.user.avatar?
+              = image_tag comment.user.avatar, width: "100px", class: "img-responsive"
+            - else
+              %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
+            %p= comment.user.name
+            = link_to 'Add Friend', "#", class: "btn btn-primary btn-sm"
+          .comment-content
+            %p= simple_format comment.content
+          - if current_user.admin? || current_user == comment.user
+            .comment-button
+              = link_to edit_post_comment_path(@post, comment) do
+                %i.fas.fa-pencil-alt.fa-2x
+              = link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"}, remote: true do
+                %i.fas.fa-trash-alt.fa-2x  
+          %hr/
+        .text-center
+          = paginate @comments
     - if @post.privacy == "all" || @post.privacy == "friend"
       = simple_form_for [@post, @comment], html: {class: "comment-form" } do |f|
         = f.input :content, placeholder: "Try to give tis post a comment!", label: false
