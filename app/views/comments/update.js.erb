@@ -1,0 +1,3 @@
+<% html = j( render :partial => "shared/my_comments", :locals => { :comment => @comment } ) %>
+
+$("#comment-edit-my_comment-<%= @comment.id %>").html("<%= html %>")
