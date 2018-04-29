@@ -17,18 +17,50 @@
         %li{role: "presentation"}
           = link_to "My Friend", friends_user_path
     %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th Title
+          %th Status
+          %th Privacy
+          %th Created Time
+          %th
       %tbody
         - @posts.each do |post|
-          %tr
-            %td
-              = link_to post.title, post_path(post)
-            %td
-              Post Status
-            %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
-            %td
-              = link_to edit_post_path(post) do
-                %i.fas.fa-pencil-alt.fa-2x
-              = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
-                %i.fas.fa-trash-alt.fa-2x
+          - if post.privacy == "all" || post.privacy == "only read"  
+            %tr
+              %td= link_to post.title, post_path(post)
+              %td= post.status.capitalize
+              %td= post.privacy.capitalize
+              %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
+              %td
+                = link_to edit_post_path(post) do
+                  %i.fas.fa-pencil-alt.fa-2x
+                = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+                  %i.fas.fa-trash-alt.fa-2x
+          - elsif post.privacy == "myself"
+            - if post.user == current_user
+              %tr
+                %td= link_to post.title, post_path(post)
+                %td= post.status.capitalize
+                %td= post.privacy.capitalize
+                %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
+                %td
+                  = link_to edit_post_path(post) do
+                    %i.fas.fa-pencil-alt.fa-2x
+                  = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+                    %i.fas.fa-trash-alt.fa-2x
+          - elsif post.privacy == "friend"
+            - if post.user.friend?(current_user) || post.user == current_user
+              %tr
+                %td= link_to post.title, post_path(post)
+                %td= post.status.capitalize
+                %td= post.privacy.capitalize
+                %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
+                %td
+                  = link_to edit_post_path(post) do
+                    %i.fas.fa-pencil-alt.fa-2x
+                  = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+                    %i.fas.fa-trash-alt.fa-2x
+    = link_to 'New Post', new_post_path, class: "btn btn-primary"
   .text-center
     = paginate @posts

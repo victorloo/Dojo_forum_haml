@@ -11,6 +11,16 @@ class PostsController < BaseIndexController
   end
 
   def show
+    if (@post.privacy == "myself" && @post.user != current_user ) 
+      flash[:alert] = '你找錯貼文囉'
+      redirect_back(fallback_location: root_path)
+    elsif @post.user != current_user
+      if (@post.privacy == "friend" && @post.user.friend?(current_user) == false)
+        flash[:alert] = '你找錯貼文囉'
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
     @categories = @post.folders
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(20)
@@ -28,7 +38,7 @@ class PostsController < BaseIndexController
   def create
     @post = current_user.posts.build(post_params)
     
-    params[:categories][:id].each do |category|
+    params[:post][:categories].each do |category|
       if !category.empty?
         @post.folders.build(:category_id => category)
       end
