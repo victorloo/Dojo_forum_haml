@@ -1,0 +1,6 @@
+= form_for [object.post, object], remote: true do |f|
+  %div.input-group
+    = f.text_area :content, class: "form-control"
+    %div.input-group-addon
+      = f.submit 'Update', class: "btn btn-primary"
+  

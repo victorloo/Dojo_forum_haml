@@ -1,0 +1,9 @@
+<% html = j( render :partial => 'form', :locals => { :object => @comment}) %>
+var comment_name = $("#comment-edit-my_comment-<%= @comment.id %>").children();
+$(comment_name[0]).html("<%= html %>");
+
+
+
+<% html = j( render :partial => 'show_form', :locals => { :object => @comment}) %>
+var comment_name = $("#comment-post_show-<%= @comment.id %>").children();
+$(comment_name[1]).html("<%= html %>");
