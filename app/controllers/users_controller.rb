@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :comments, :collections, :drafts, :friends]
   before_action :not_allowed, only: [:edit, :collections, :drafts, :friends]
+  before_action :check_avatar
 
   def show
     @posts = @user.posts.where(status: "published").order(id: :desc).page(params[:page]).per(20)
@@ -45,6 +46,12 @@ class UsersController < ApplicationController
   def not_allowed
     unless @user == current_user
       redirect_to user_path(@user), alert: "Not allowed!"
+    end
+  end
+
+  def check_avatar
+    if current_user.avatar.nil?
+      current_user.update(avatar: "https://cdn.filestackcontent.com/z2xAtAcQTF7KgoD67Fpf")
     end
   end
   

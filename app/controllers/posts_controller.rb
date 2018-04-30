@@ -1,6 +1,7 @@
 class PostsController < BaseIndexController
   before_action :find_post, only: [:edit, :draft_edit, :update, :show, :destroy, :collect, :discollect]
   skip_before_action :authenticate_user!, only: :index
+  before_action :check_avatar, except: :index
 
   helper_method :sort_column, :sort_direction
 
@@ -147,6 +148,12 @@ class PostsController < BaseIndexController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def check_avatar
+    if current_user.avatar.nil?
+      current_user.update(avatar: "https://cdn.filestackcontent.com/z2xAtAcQTF7KgoD67Fpf")
+    end
   end
 
 end
