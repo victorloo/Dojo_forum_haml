@@ -1,7 +1,8 @@
 %td
   = comment.content
 %td
-  = link_to edit_post_comment_path(comment.post, comment, site: "my_comments"), remote: true do
-    %i.fas.fa-pencil-alt.fa-2x
-  = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?"}, remote: true do
-    %i.fas.fa-trash-alt.fa-2x
+  - if comment.user == current_user
+    = link_to edit_post_comment_path(comment.post, comment, site: "my_comments"), remote: true do
+      %i.fas.fa-pencil-alt.fa-2x
+    = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: "Are you sure?"}, remote: true do
+      %i.fas.fa-trash-alt.fa-2x
