@@ -1,11 +1,6 @@
 .row
-  - if @post.errors.any?
-    .well
-      %h3 There is some errors!
-      %ul.list-group
-        - @post.errors.full_messages.each do |msg|
-          %li.list-group-item=msg
-    %hr/
+  - if object.errors.any?
+    = render 'shared/error_msg', object: object
         
   = simple_form_for object, :html => {:class => "form-group"} do |f|
     = f.input :title, label: false, placeholder: "Title", :class => "form-control"

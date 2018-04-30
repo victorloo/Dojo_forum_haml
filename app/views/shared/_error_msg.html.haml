@@ -1,0 +1,6 @@
+.well
+  %h3 There is some errors!
+  %ul.list-group
+    - object.errors.full_messages.each do |msg|
+      %li.list-group-item=msg
+%hr/
