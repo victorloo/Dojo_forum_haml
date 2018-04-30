@@ -1,5 +1,5 @@
 class PostsController < BaseIndexController
-  before_action :find_post, only: [:edit, :update, :show, :destroy, :collect, :discollect]
+  before_action :find_post, only: [:edit, :draft_edit, :update, :show, :destroy, :collect, :discollect]
   skip_before_action :authenticate_user!, only: :index
 
   helper_method :sort_column, :sort_direction
@@ -62,6 +62,9 @@ class PostsController < BaseIndexController
   end
 
   def edit
+  end
+
+  def draft_edit
   end
 
   def update

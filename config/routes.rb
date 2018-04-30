@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       post :collect
       post :discollect
+      get :draft_edit
     end
     
   end
