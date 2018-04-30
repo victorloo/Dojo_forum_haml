@@ -33,10 +33,12 @@
               %td= post.privacy.capitalize
               %td= post.created_at.in_time_zone('Taipei').strftime("%Y-%m-%d")
               %td
-                = link_to edit_post_path(post) do
-                  %i.fas.fa-pencil-alt.fa-2x
-                = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
-                  %i.fas.fa-trash-alt.fa-2x
+                - if post.user == current_user
+                  = link_to edit_post_path(post) do
+                    %i.fas.fa-pencil-alt.fa-2x
+                - if post.user == current_user || current_user.role == "admin"
+                  = link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do
+                    %i.fas.fa-trash-alt.fa-2x
     = link_to 'New Post', new_post_path, class: "btn btn-primary"
   .text-center
     = paginate @posts
