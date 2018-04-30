@@ -3,7 +3,7 @@
 @import "bootstrap";
 
 body {
-  font-family: 'Lato', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: 'Lato', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .clearfix:before, .clearfix:after {
@@ -119,6 +119,17 @@ textarea.form-control.text.required {
   }
 }
 /* Feeds ending */
+
+.footer {
+  margin: auto;
+  margin-top: 1rem;
+  background: #e7e7e7;
+  p {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    margin: 0;
+  }
+}
 
 .friends {
   h2 {
