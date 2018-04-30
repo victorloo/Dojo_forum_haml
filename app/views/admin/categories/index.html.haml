@@ -11,7 +11,7 @@
         = f.input_field :name, label: false, placeholder: "Category Name"
         = f.submit nil, class: "btn btn-primary"
         - if @category.errors.any?
-          %span= @category.errors.full_messages.to_sentence
+          = render 'shared/error_msg', object: @category
 
     %table.table.table-bordered.table-hover
       %thead

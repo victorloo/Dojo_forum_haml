@@ -2,7 +2,7 @@
   - if object.errors.any?
     = render 'shared/error_msg', object: object
         
-  = simple_form_for object, :html => {:class => "form-group"} do |f|
+  = simple_form_for object, remote: true, :html => {:class => "form-group"} do |f|
     = f.input :title, label: false, placeholder: "Title", :class => "form-control"
     = f.input :content, label: false, placeholder: "Create some Magic!", :class => "form-control"
     - if object.image?
@@ -28,5 +28,5 @@
         = object.status.capitalize
     %br/
     = f.submit 'Save as Draft', class: "btn btn-default"
-    = f.submit nil, class: "btn btn-primary"
+    = f.submit 'Update this Post', class: "btn btn-primary"
       
