@@ -84,6 +84,14 @@ class PostsController < BaseIndexController
       else
         render 'edit'
       end
+    elsif params[:commit] == 'Update this Post'
+      @post.status = "published"
+      @post.update(post_params)
+      @categories = @post.folders
+      respond_to do |format|
+        format.html {  }
+        format.js
+      end
     else
       @post.status = "published"
       if @post.update(post_params)
