@@ -32,8 +32,12 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category.destroy
-    redirect_to admin_categories_path, alert: "Category was successfully deleted"
+    if @category.folders.empty? 
+      @category.destroy
+      redirect_to admin_categories_path, alert: "Category was successfully deleted"
+    else
+      redirect_to admin_categories_path, alert: "Category was associated with posts"
+    end
   end
   
   private
