@@ -31,6 +31,8 @@ User.create(
   email: "admin@example.com",
   password: "12345678",
   name: "Admin",
-  role: "admin"
+  role: "admin",
+  intro: FFaker::Lorem::sentence(30),
+  authentication_token: Devise.friendly_token
 )
 puts "Default Admin created!"
