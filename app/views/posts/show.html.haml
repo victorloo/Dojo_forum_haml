@@ -1,4 +1,4 @@
-= provide :my_title, "檢視貼文"
+= provide :my_title, "閱讀 #{@post.title}"
 .container
   .row
     .post-title.col-12
@@ -47,8 +47,8 @@
       - @comments.each do |comment|
         %div{id: "comment-my_comment-#{comment.id}"}
           = render 'shared/post_comments', comment: comment
-        .text-center
-          = paginate @comments
+      .text-center
+        = paginate @comments
     - if @post.privacy == "all" || @post.privacy == "friend"
       = simple_form_for [@post, @comment], remote: true, html: {class: "comment-form" } do |f|
         = f.input :content, placeholder: "Try to give tis post a comment!", label: false

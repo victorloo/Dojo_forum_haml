@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :not_allowed, only: [:edit, :collections, :drafts, :friends]
 
   def show
-    @posts = @user.posts.page(params[:page]).per(20)
+    @posts = @user.posts.where(status: "published").order(id: :desc).page(params[:page]).per(20)
   end
 
   def edit
