@@ -8,7 +8,7 @@
     .comment#comment
       %hr/
       - @comments.each do |comment|
-        %div{id: "comment-my_comment-#{comment.id}"}
+        %div{id: "comment-show-my_comment-#{comment.id}"}
           = render 'shared/post_comments', comment: comment
       .text-center
         = paginate @comments

@@ -3,4 +3,4 @@ $("#comment-edit-my_comment-<%= @comment.id %>").html("<%= html %>")
 
 
 <% html = j( render :partial => "shared/post_comments", :locals => { :comment => @comment } ) %>
-$("#comment-my_comment-<%= @comment.id %>").html("<%= html %>")
+$("#comment-show-my_comment-<%= @comment.id %>").html("<%= html %>")
