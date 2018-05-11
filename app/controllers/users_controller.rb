@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :check_avatar
 
   def show
-    @posts = @user.posts.where(status: "published").order(id: :desc).page(params[:page]).per(20)
+    @posts = @user.posts.readable_posts(current_user).where(status: "published").order(id: :desc).page(params[:page]).per(20)
   end
 
   def edit

@@ -25,4 +25,9 @@ class Post < ApplicationRecord
     ['Save as Draft', :draft],
     ['Published', :published]
   ]
+
+  def self.readable_posts(user)
+    Post.where(privacy: "friend", user: user.all_friends).or(where(privacy: "all")).or(where(privacy: "myself", user: user)).or(where(user: user))
+  end
+  
 end

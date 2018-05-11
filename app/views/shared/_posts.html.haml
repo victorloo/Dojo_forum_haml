@@ -7,18 +7,17 @@
       %th= sort_link 'views_count', 'Viewed count'
   %tbody
     - objects.each do |object|
-      - if object.can_read?(current_user)
-        %tr
-          %td
-            .replies_count= object.comments_count
-          %td= link_to "#{object.title}", post_path(object)
-          %td
-            - if object.comments.size == 0
-              %p Give a reply!
-            - else
-              = object.lastreplies.in_time_zone('Taipei').strftime("%Y-%m-%d")
-          %td
-            %i.fas.fa-eye.fa-sm
-            = object.views_count
+      %tr
+        %td
+          .replies_count= object.comments_count
+        %td= link_to "#{object.title}", post_path(object)
+        %td
+          - if object.comments.size == 0
+            %p Give a reply!
+          - else
+            = object.lastreplies.in_time_zone('Taipei').strftime("%Y-%m-%d")
+        %td
+          %i.fas.fa-eye.fa-sm
+          = object.views_count
 .text-center
   = paginate objects

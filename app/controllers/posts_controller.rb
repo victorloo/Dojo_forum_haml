@@ -6,9 +6,13 @@ class PostsController < BaseIndexController
   helper_method :sort_column, :sort_direction
 
   def index
-    published = Post.all.where(status: "published")
-    @posts = published.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
-    @categories = Category.all
+    if current_user
+      @posts = Post.all.readable_posts(current_user).where(status: "published").order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
+      @categories = Category.all
+    else
+      @posts = Post.all.where(status: "published").where(privacy: "all").page(params[:page]).per(20)
+      @categories = Category.all
+    end
   end
 
   def show
