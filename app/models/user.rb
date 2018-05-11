@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   before_create :generate_authentication_token
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   has_many :posts
 
   has_many :comments, dependent: :destroy
