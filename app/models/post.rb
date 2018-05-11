@@ -17,7 +17,6 @@ class Post < ApplicationRecord
 
   POST_PRIVACY = [
     ['All', :all],
-    ['Only Read', 'only read'],
     ['Friend', :friend],
     ['Myself', :myself]
   ]
