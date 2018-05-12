@@ -3,17 +3,17 @@
     = image_tag comment.user.avatar, width: "100px", class: "img-responsive"
   - else
     %img.img-responsive.img-rounded(src="http://via.placeholder.com/100x100")/  
-    %p= link_to comment.user.name, user_path(comment.user)
-    - if current_user.friend?(comment.user)
-      %p Friend
-    - elsif current_user.nobody?(comment.user)
-      %p 已忽略
-    - elsif current_user.target?(comment.user) || current_user.inverse_nobodys?(comment.user)
-      %p 已提出申請
-    - elsif @post.user == current_user
-      %p
-    - else
-      = link_to 'Add Friend', applyings_path(target_id: comment.user), method: :post, class: "btn btn-primary btn-sm"
+  %p= link_to comment.user.name, user_path(comment.user)
+  - if current_user.friend?(comment.user)
+    %p Friend
+  - elsif current_user.nobody?(comment.user)
+    %p 已忽略
+  - elsif current_user.target?(comment.user) || current_user.inverse_nobodys?(comment.user)
+    %p 已提出申請
+  - elsif @post.user == current_user
+    %p
+  - else
+    = link_to 'Add Friend', applyings_path(target_id: comment.user), method: :post, class: "btn btn-primary btn-sm"
 %div.comment-content{id: "comment-post_show-#{comment.id}"}
   %p= simple_format comment.content
 - if current_user.admin? || current_user == comment.user
