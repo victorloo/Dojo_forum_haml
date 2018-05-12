@@ -20,7 +20,7 @@ module UsersHelper
   end
 
   def friend?(user)
-    self.friends.include?(user)
+    self.friends.include?(user) or self.inverse_friends.include?(user)
   end
 
   def nobody?(user)
