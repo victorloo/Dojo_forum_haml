@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.4.3'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
@@ -32,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'simple_form', '~> 4.0'
-gem 'hamlit', '~> 2.8', '>= 2.8.8'
+gem "haml-rails", "~> 1.0"
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
 gem 'ffaker', '~> 2.9'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
@@ -56,6 +54,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'brakeman', '~> 4.3'
+  gem 'bundler-audit', '~> 0.6.0'
 end
 
 group :production do
