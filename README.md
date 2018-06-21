@@ -7,7 +7,7 @@
 ## 如何啟動？
 
 ```ruby
-git clone 
+git clone git@github.com:victorloo/Dojo_forum_haml.git
 bundle install
 rake db:migrate
 rake db:seed
