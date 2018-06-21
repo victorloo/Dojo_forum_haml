@@ -1,4 +1,4 @@
-= simple_form_for [object.post, object], remote: true, html: {class: "comment-form" } do |f|
+= simple_form_for [object.post, object], remote: true, html: {class: "comment-form comment-edit" } do |f|
   = f.input :content, placeholder: "Try to give tis post a comment!", label: false
 
   = f.submit nil, class: "btn btn-primary"

@@ -1,6 +1,6 @@
 <% html = j( render :partial => "shared/my_comments", :locals => { :comment => @comment } ) %>
 $("#comment-edit-my_comment-<%= @comment.id %>").html("<%= html %>")
 
-
-<% html = j( render :partial => "shared/post_comments", :locals => { :comment => @comment } ) %>
-$("#comment-show-my_comment-<%= @comment.id %>").html("<%= html %>")
+$("#comment-post_show-<%= @comment.id %>").children().remove();
+<% editNew = j( render :partial => "shared/edited_comment", :locals => { :object => @comment } ) %>
+$("#comment-post_show-<%= @comment.id %>").append("<%= editNew %>")

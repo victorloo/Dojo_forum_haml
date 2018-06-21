@@ -12,16 +12,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if current_user.admin?
-      @comment.destroy
-    end
+    @comment.destroy && find_post if current_user.admin?
   end
 
   def edit
   end
 
   def update
-    @comment.update(comment_params)
+    @comment.update(comment_params) && find_comment
   end
 
   private

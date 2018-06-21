@@ -1,4 +1,5 @@
 var comment = document.createElement("div");
-comment.id = "comment-my_comment-<%= @comment.id %>";
+comment.id = "comment-show-my_comment-<%= @comment.id %>";
 comment.innerHTML = "<%= j render(:partial => 'shared/post_comments', :locals => { :comment => @comment}) %>";
 $('#comment').append(comment);
+$("textarea").val('');
