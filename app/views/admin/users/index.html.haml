@@ -22,7 +22,7 @@
             %td= user.email
             %td
               = simple_form_for [:admin, user], html: { class: "form-inline" } do |f|
-                = f.input :role, label: false, collection: User::USER_ROLE, label_method: :first, value_method: :second, html: { class: "form-control" }
+                = f.input :role, label: false, collection: User::USER_ROLE, label_method: :first, value_method: :second, include_blank: false, html: { class: "form-control" }
                 = f.submit 'Update', class: "btn btn-default"
     .text-center
       = paginate @users
